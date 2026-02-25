@@ -1,5 +1,7 @@
 package structures;
 
+import structures.basic.Tile;
+
 /**
  * This class can be used to hold information about the on-going game.
  * Its created with the GameActor.
@@ -11,7 +13,7 @@ public class GameState {
 
 	
 	public boolean gameInitalised = false;
-	
 	public boolean something = false;
+	public Tile[][] boardTiles = null;
 	
 }

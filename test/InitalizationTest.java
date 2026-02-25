@@ -1,4 +1,5 @@
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -47,6 +48,14 @@ public class InitalizationTest {
 		initalizeProcessor.processEvent(null, gameState, eventMessage); // send it to the initalize event processor
 		
 		assertTrue(gameState.gameInitalised); // check that this updated the game state
+		assertNotNull(gameState.boardTiles); // check board tiles array was initalized
+		assertTrue(gameState.boardTiles.length == 9); // check x dimension
+		assertTrue(gameState.boardTiles[0].length == 5); // check y dimension
+		for (int x = 0; x < gameState.boardTiles.length; x++) {
+			for (int y = 0; y < gameState.boardTiles[x].length; y++) {
+				assertNotNull(gameState.boardTiles[x][y]); // check each tile has been populated
+			}
+		}
 		
 		// lets also check that running commands don't actually do anything, since we have no front-end
 		Tile tile = BasicObjectBuilders.loadTile(3, 2); // create a tile
