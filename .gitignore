@@ -67,3 +67,11 @@ local.properties
 .scala_dependencies
 .worksheet
 /bin/
+# Added from teacher template (generic Java)
+*.log
+*.jar
+*.nar
+*.ctxt
+.mtj.tmp/
+hs_err_pid*
+replay_pid*
