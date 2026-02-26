@@ -32,6 +32,7 @@ public class Unit {
 	private Tile unit_tile;
 	public boolean hasMoved = false;
 	public boolean hasAttacked = false;
+	public Player owner; // Tracks if the unit belongs to Human or AI
 	
 //	SC -01 Initial functions
 	private void setDefaults() {
@@ -56,6 +57,14 @@ public class Unit {
 	public Tile getUnitTile() {
 		return this.unit_tile;
 	}
+
+	public Player getOwner() {
+        return owner;
+    }
+ 
+    public void setOwner(Player owner) {
+        this. owner = owner;
+    }
 	
 	public Unit() {setDefaults();}
 	

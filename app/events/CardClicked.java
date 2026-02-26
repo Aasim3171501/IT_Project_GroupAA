@@ -3,6 +3,14 @@ package events;
 
 import com.fasterxml.jackson.databind.JsonNode;
 
+// logic engines
+import structures.logic.CardResolver;
+ 
+import akka.stream.impl.QueueSource.Input;
+import commands.BasicCommands;
+import structures.basic.Tile;
+import structures.basic.Card;
+import utils.BasicObjectBuilders;
 import akka.actor.ActorRef;
 import structures.GameState;
 
@@ -23,8 +31,14 @@ public class CardClicked implements EventProcessor{
 	@Override
 	public void processEvent(ActorRef out, GameState gameState, JsonNode message) {
 		
-		int handPosition = message.get("position").asInt();
-		
+        // position of card
+        int handPosition = message.get("position").asInt();
+ 
+        // clicked card
+        Card selected = gameState.human_cards.get(handPosition-1);
+       
+        // [SC-06] CardResolver resolves the click
+        CardResolver.resolveCardClick(out, gameState, selected, handPosition);
 		
 	}
 
