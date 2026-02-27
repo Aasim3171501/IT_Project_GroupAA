@@ -113,6 +113,10 @@ public class Initalize implements EventProcessor{
             aiPlayer.setMana(0);
             BasicCommands.setPlayer2Mana(out, aiPlayer);
             try {Thread.sleep(100);} catch (InterruptedException e) {e.printStackTrace();}
+
+	  // Setting the owner of human and ai unit as these 2 players
+            human.setOwner(humanPlayer);
+            ai.setOwner(aiPlayer);
            
 // // ---------------------------------------------------------------------------------------------------------------------
 // // [SC-05] Starting Hand: Draw 3 cards for each player using OrderedCardLoader

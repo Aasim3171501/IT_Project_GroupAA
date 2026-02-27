@@ -60,5 +60,30 @@ public class GameState {
     public List<Card> ai_hand = new ArrayList<>();
     // preloaded ai deck
     public List<Card> ai_deck = new ArrayList<>();
+
+	//  [SC-06] Currently selected card (active card)
+    public Card ActiveCard = null;
+   
+	// [SC -06] handposition of the current card
+    public int handPosition = -1;
+
+	// [Ref SC -08] reset highlighted tiles
+   
+    public List<Tile> highlightedTiles = new ArrayList<>();
+ 
+    public void clearHighlights(ActorRef out) {
+ 
+        for (Tile t : highlightedTiles) {
+            BasicCommands.drawTile(out, t, 0);
+        }
+        highlightedTiles.clear();
+    }
+
+
+	//  [SC-07] human_spawns
+    public List<Unit> human_units = new ArrayList<>();
+ 
+    //  [SC-07] ai_spawns
+    public List<Unit> ai_units = new ArrayList<>();
 	
 }
