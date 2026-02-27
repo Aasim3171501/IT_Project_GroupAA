@@ -35,10 +35,6 @@ public class Unit {
 	public Player owner; // Tracks if the unit belongs to Human or AI
 	
 //	SC -01 Initial functions
-	private void setDefaults() {
-	    this.health = 20;
-	    this.attack = 2;
-	}
 	public void sethealth(int amount) {
 		this.health=amount;
 	}
@@ -66,7 +62,7 @@ public class Unit {
         this. owner = owner;
     }
 	
-	public Unit() {setDefaults();}
+	public Unit() {}
 	
 	public Unit(int id, UnitAnimationSet animations, ImageCorrection correction) {
 		super();
@@ -76,7 +72,6 @@ public class Unit {
 		position = new Position(0,0,0,0);
 		this.correction = correction;
 		this.animations = animations;
-		setDefaults();
 	}
 	
 	public Unit(int id, UnitAnimationSet animations, ImageCorrection correction, Tile currentTile) {
@@ -87,7 +82,6 @@ public class Unit {
 		position = new Position(currentTile.getXpos(),currentTile.getYpos(),currentTile.getTilex(),currentTile.getTiley());
 		this.correction = correction;
 		this.animations = animations;
-		setDefaults();
 	}
 	
 	
@@ -100,7 +94,6 @@ public class Unit {
 		this.position = position;
 		this.animations = animations;
 		this.correction = correction;
-		setDefaults();
 	}
 
 	public int getId() {

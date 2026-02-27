@@ -73,6 +73,7 @@ public class BasicCommands {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		try {Thread.sleep(100);} catch (InterruptedException e) {e.printStackTrace();}
 	}
 	
 	/**

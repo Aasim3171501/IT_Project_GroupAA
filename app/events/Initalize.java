@@ -57,10 +57,11 @@ public class Initalize implements EventProcessor{
 
 // 		// lOAD HUMAN UNIT
 		Unit human = BasicObjectBuilders.loadUnit(StaticConfFiles.humanAvatar, gameState.UnitId++, Unit.class);
+		human.sethealth(20);
+		human.setAttack(2);
 		gameState.human_unit = human;
 		gameState.placeUnit(gameState.human_unit, gameState.tiles[1][2]); 
 		BasicCommands.drawUnit(out, gameState.human_unit, gameState.tiles[1][2]);
-		try {Thread.sleep(5);} catch (InterruptedException e) {e.printStackTrace();}
 
 // 		//	Show human's health
 		BasicCommands.setUnitHealth(out, gameState.human_unit, 20);
@@ -73,9 +74,10 @@ public class Initalize implements EventProcessor{
 // 		//	Load ai unit
 		Unit ai = BasicObjectBuilders.loadUnit(StaticConfFiles.aiAvatar, gameState.UnitId++, Unit.class);
 		gameState.ai_unit = ai;
+		ai.sethealth(20);
+		ai.setAttack(2);
 		gameState.placeUnit(gameState.ai_unit, gameState.tiles[7][2]); 
 		BasicCommands.drawUnit(out, gameState.ai_unit, gameState.tiles[7][2]);
-		try {Thread.sleep(5);} catch (InterruptedException e) {e.printStackTrace();}
 		
 		
 // 		//	Show ai's health
