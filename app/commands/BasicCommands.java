@@ -391,6 +391,25 @@ public class BasicCommands {
 			e.printStackTrace();
 		}
 	}
+
+	/**
+	 * This command creates a notification box next to the portrait for player 2.
+	 * @param out
+	 * @param text
+	 * @param displayTimeSeconds
+	 */
+	public static void addPlayer2Notification(ActorRef out, String text, int displayTimeSeconds) {
+		try {
+			ObjectNode returnMessage = Json.newObject();
+			returnMessage.put("messagetype", "addPlayer2Notification");
+			returnMessage.put("text", text);
+			returnMessage.put("seconds", displayTimeSeconds);
+			if (altTell!=null) altTell.tell(returnMessage);
+			else out.tell(returnMessage, out);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	/**
 	 * Plays a projectile fire animation between two tiles

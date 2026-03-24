@@ -4,6 +4,7 @@ package events;
 import com.fasterxml.jackson.databind.JsonNode;
 
 import akka.actor.ActorRef;
+import game.GameService;
 import structures.GameState;
 
 /**
@@ -24,8 +25,7 @@ public class CardClicked implements EventProcessor{
 	public void processEvent(ActorRef out, GameState gameState, JsonNode message) {
 		
 		int handPosition = message.get("position").asInt();
-		
-		
+		GameService.handleCardClicked(out, gameState, handPosition);
 	}
 
 }

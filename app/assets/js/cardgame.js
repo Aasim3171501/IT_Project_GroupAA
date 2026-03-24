@@ -547,6 +547,9 @@ function executeProjectileMoveStep(projectile) {
 function setUnitHealth(message) {
 	var unitID = message.unit.id;
 	var health = message.health;
+	if (!healthLabels.has(unitID)) {
+		return;
+	}
 	
 	
 	var oldHealth = parseInt(healthLabels.get(unitID).text);
@@ -563,6 +566,9 @@ function setUnitHealth(message) {
 function setUnitAttack(message) {
 	var unitID = message.unit.id;
 	var attack = message.attack;
+	if (!attackLabels.has(unitID)) {
+		return;
+	}
 	
 	
 	var oldAttack = parseInt(attackLabels.get(unitID).text);
@@ -881,6 +887,9 @@ function addPlayer2Notification(message) {
 function playUnitAnimation(message) {
 	
 	var targetUnit = sprites.get(message.unit.id);
+	if (targetUnit == null) {
+		return;
+	}
 	var animationData = getFrameSet(message.unit);
 	targetUnit.loop = animationData.loop;
 	targetUnit.fps = animationData.fps;
@@ -891,7 +900,9 @@ function playUnitAnimation(message) {
 
 function deleteCard(message) {
 	var card = handContainers[message.position-1];
-	g.stage.removeChild(card);
+	if (card != null) {
+		g.stage.removeChild(card);
+	}
 	handContainers[message.position-1]=null;
 	handSprites[message.position-1]=null;
 	cardJSON[message.position-1]=null;
@@ -900,6 +911,9 @@ function deleteCard(message) {
 
 function deleteUnit(message) {
 	var unitContainer = spriteContainers.get(message.unit.id);
+	if (unitContainer == null) {
+		return;
+	}
 	g.stage.removeChild(unitContainer);
 	spriteContainers.delete(message.unit.id);
 	sprites.delete(message.unit.id);
