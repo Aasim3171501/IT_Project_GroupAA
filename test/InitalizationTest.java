@@ -1,4 +1,6 @@
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
@@ -7,7 +9,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import commands.BasicCommands;
 import commands.CheckMessageIsNotNullOnTell;
-import events.Initalize;
+import game.GameService;
 import play.libs.Json;
 import structures.GameState;
 import structures.basic.Tile;
@@ -38,15 +40,19 @@ public class InitalizationTest {
 		// As we are not starting the front-end, we have no GameActor, so lets manually create
 		// the components we want to test
 		GameState gameState = new GameState(); // create state storage
-		Initalize initalizeProcessor =  new Initalize(); // create an initalize event processor
 		
 		assertFalse(gameState.gameInitalised); // check we have not initalized
 		
 		// lets simulate recieveing an initalize message
 		ObjectNode eventMessage = Json.newObject(); // create a dummy message
-		initalizeProcessor.processEvent(null, gameState, eventMessage); // send it to the initalize event processor
+		GameService.initializeGame(null, gameState); // send it to the game service
 		
 		assertTrue(gameState.gameInitalised); // check that this updated the game state
+		assertEquals(45, gameState.getTiles().size());
+		assertEquals(3, gameState.getPlayer1().getHand().size());
+		assertEquals(3, gameState.getPlayer2().getHand().size());
+		assertNotNull(gameState.getUnitAt(1, 3));
+		assertNotNull(gameState.getUnitAt(9, 3));
 		
 		// lets also check that running commands don't actually do anything, since we have no front-end
 		Tile tile = BasicObjectBuilders.loadTile(3, 2); // create a tile

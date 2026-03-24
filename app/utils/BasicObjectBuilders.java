@@ -163,7 +163,7 @@ public class BasicObjectBuilders {
 				}
 				if (endframe==0) endframe=index;
 				int[] frameIndexes = {startframe, endframe};
-				if (inAnimation) unit.getAnimations().getChannel().setFrameStartEndIndices(frameIndexes);
+				if (inAnimation) unit.getAnimations().getHit().setFrameStartEndIndices(frameIndexes);
 			}
 
 			// HIT
